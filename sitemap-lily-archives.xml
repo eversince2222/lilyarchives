@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemap site="Lily Archives" file="index.html" type="single-page-app">
+
+  <section id="landing" name="Landing">
+    <element id="landing-inner"/>
+    <element id="landing-enter" type="button" action="enter -> reveals app"/>
+    <element id="bg-layer" desc="fond d'écran"/>
+  </section>
+
+  <nav>
+    <link label="music" data-page="home" default="true"/>
+    <link label="tour dates" data-page="tour"/>
+    <link label="archives" data-page="archives"/>
+    <link label="about" data-page="about"/>
+  </nav>
+
+  <page id="page-home" name="Music">
+    <release title="fragile ⋆𝜗𝜚" type="EP" status="coming in july">
+      <tracklist>
+        <track n="1" title="les feus d'c!rculat!on" feat="Suijin" prod="Suijin, Lily Archives"/>
+        <track n="2" title="winter comes" prod="Loca Negra, AQUILOTTO, Lily Archives"/>
+        <track n="3" title="peroxide" prod="Skrapes, Lily Archives"/>
+        <track n="4" title="concrete" prod="Lily Archives, Loca Negra"/>
+        <track n="5" title="hide" prod="AQUILOTTO"/>
+        <track n="6" title="everything i loved melted" prod="Lily Archives"/>
+        <track n="7" title="6 years" prod="Lily Archives"/>
+        <track n="8" title="i knew you were going to leave me" prod="Lily Archives"/>
+      </tracklist>
+      <credits cover="robin sebastian collijn" mix_master="artripen"/>
+    </release>
+    <links>
+      <link platform="apple music" status="disabled" note="coming soon"/>
+      <link platform="soundcloud" url="https://soundcloud.com/lilyarchives"/>
+      <link platform="spotify" status="disabled" note="coming soon"/>
+      <link platform="instagram" url="https://instagram.com/lilyarchives11"/>
+      <link platform="contact" url="mailto:eversince2222@gmail.com"/>
+      <link platform="bandcamp" url="https://bandcamp.com/lilyarchives"/>
+      <link platform="youtube" url="https://www.youtube.com/@lilyarchives1"/>
+    </links>
+  </page>
+
+  <page id="page-tour" name="Tour dates">
+    <tour_item date="01·09·2022" venue="La Boule Noire" city="Paris" status="sold out"/>
+    <tour_item date="02·03·2023" venue="Le Chinois" city="Montreuil" status=""/>
+    <tour_item date="05·06·2026" venue="TBA" city="Paris" status="upcoming"/>
+  </page>
+
+  <page id="page-archives" name="Archives">
+    <alias name="4ffection">
+      <link platform="soundcloud" url="https://soundcloud.com/4ffection1" label="soundcloud — 4ffection"/>
+      <link platform="spotify" url="https://open.spotify.com/intl-fr/artist/1llZ0ibk9ayEqzcyFMLT8j?si=m3q2aMTSSXOMpPGnUbB5ng" label="spotify — 4ffection"/>
+      <link platform="soundcloud" url="https://soundcloud.com/4ffection_archives" label="soundcloud — archives"/>
+    </alias>
+  </page>
+
+  <page id="page-about" name="About">
+    <element id="about-illustration"/>
+    <bio>
+      <link_ref label="staring girl" url="https://soundcloud.com/4ffection_archives"/>
+      <link_ref label="egobaby" url="https://soundcloud.com/4ffection_archives"/>
+      <link_ref label="4ffection" url="https://soundcloud.com/4ffection1"/>
+      <link_ref label="Skrapes" url="https://soundcloud.com/officialskrapes"/>
+      <link_ref label="Scream" url="https://soundcloud.com/officialskrapes/scream"/>
+      <link_ref label="Dogonyat" url="https://soundcloud.com/officialskrapes/dogonyat"/>
+      <link_ref label="love letters" url="https://soundcloud.com/4ffection1/love-letters-rework-prod-skrapes"/>
+      <link_ref label="looking for the stars" url="https://soundcloud.com/4ffection1/looking-for-the-stars-prod-skrapes"/>
+      <link_ref label="All Flesh Rots" url="https://soundcloud.com/4ffection_archives/sets/all-flesh-rots-2025"/>
+    </bio>
+  </page>
+
+  <script id="sanctuary-final-script" note="présent en fin de fichier, non détaillé ici"/>
+
+</sitemap>
