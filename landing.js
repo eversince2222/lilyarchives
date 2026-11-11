@@ -1,3 +1,25 @@
+(function(){
+ const c=document.getElementById('mold'),S=640,x=c.getContext('2d'),img=new Image();
+ c.width=c.height=S;img.src='assets/img/mold_cover.jpg';
+ const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ let base,clear,mask,mx,px=.5,py=.5,on=false,t=0;
+ function soft(n,dark){ /* tiny bilinear thumbnail stretched back = heavy blur, then darkened */
+  const a=document.createElement('canvas');a.width=a.height=n;a.getContext('2d').drawImage(img,0,0,n,n);
+  const b=document.createElement('canvas');b.width=b.height=S;const q=b.getContext('2d');q.imageSmoothingQuality='high';q.drawImage(a,0,0,S,S);
+  q.fillStyle='rgba(4,10,6,'+dark+')';q.fillRect(0,0,S,S);return b}
+ img.onload=()=>{base=soft(9,.5);clear=soft(15,.3);
+  mask=document.createElement('canvas');mask.width=mask.height=S;mx=mask.getContext('2d');requestAnimationFrame(loop)};
+ function loop(){
+  if(!on&&!still){t+=.005;px=.5+.3*Math.sin(t*1.3);py=.5+.3*Math.sin(t*.9+1)}
+  x.drawImage(base,0,0);
+  mx.globalCompositeOperation='source-over';mx.clearRect(0,0,S,S);mx.drawImage(clear,0,0);
+  const g=mx.createRadialGradient(px*S,py*S,0,px*S,py*S,S*.22);g.addColorStop(0,'rgba(0,0,0,.85)');g.addColorStop(1,'rgba(0,0,0,0)');
+  mx.globalCompositeOperation='destination-in';mx.fillStyle=g;mx.fillRect(0,0,S,S);
+  x.drawImage(mask,0,0);requestAnimationFrame(loop)}
+ function mv(e){const r=c.getBoundingClientRect();px=(e.clientX-r.left)/r.width;py=(e.clientY-r.top)/r.height;on=true}
+ c.addEventListener('pointerdown',mv);c.addEventListener('pointermove',mv);
+ c.addEventListener('pointerleave',()=>on=false);c.addEventListener('pointerup',e=>{if(e.pointerType==='touch')setTimeout(()=>on=false,900)});
+})();
 /* Landing: WebGL beige room (butterfly + fawn), jewelry box (lid loop + glitter), 3 tarot cards (flip / yoyo like the supplied code) */
 (function(){
  const root=document.getElementById('landing');
@@ -78,7 +100,11 @@
   /* ---------- CARDS ---------- */
  const cards=[...root.querySelectorAll('.card-container')];let openC=null,ptype='mouse',leaveT=0;
  function setOpen(c){cards.forEach(x=>x.classList.toggle('open',x===c));fan.classList.toggle('has-open',!!c);openC=c}
- function go(dest){try{sessionStorage.setItem('la','1')}catch(e){}
+ function dismissNow(){alive=false;document.documentElement.classList.remove('has-landing');document.documentElement.classList.add('no-landing');root.style.display='none';try{root.remove()}catch(e){}window.scrollTo(0,0)}
+ window.addEventListener('hashchange',()=>{if(location.hash==='#enter')dismissNow()});
+/* the landing always opens on the homepage; #enter (enter button / cards) closes it */
+if(location.hash==='#enter'){dismissNow()}
+ function go(dest){if(!dest||/^index\.html/.test(dest)){dismissNow();return}
   root.classList.add('out');document.documentElement.classList.remove('has-landing');
   const page=dest&&dest!=='index.html';setTimeout(()=>{alive=false;if(page)location.href=dest;else{document.documentElement.classList.add('no-landing');root.remove()}},page?650:780)}
  root.addEventListener('pointerdown',e=>{ptype=e.pointerType||'mouse'},true);
@@ -87,8 +113,7 @@
   c.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){clearTimeout(leaveT);setOpen(c)}});
   c.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){clearTimeout(leaveT);leaveT=setTimeout(()=>{if(openC===c)setOpen(null)},110)}});
   c.addEventListener('focus',()=>{if(ptype==='key')setOpen(c)});
-  c.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(ptype==='mouse'||ptype==='key'||openC===c)go(c.dataset.go);else setOpen(c)});
+  c.addEventListener('click',e=>{if(ptype!=='mouse'&&openC!==c){e.preventDefault();setOpen(c)}});
  });
  root.addEventListener('click',e=>{if(!e.target.closest('.card-container,.l-enter'))setOpen(null)});
- $('.l-enter').addEventListener('click',e=>{e.preventDefault();go('index.html')});
-})();
+ })();

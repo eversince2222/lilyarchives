@@ -1,7 +1,7 @@
 /* shared taskbar + footer + heart trail. edit SITE / NAV once, all pages update. */
 const SITE={name:"lily archives",tagline:"french ambient artist",footer:"all rights reserved"};
 const NAV=[
- {id:"home",label:"Home",href:"index.html"},
+ {id:"home",label:"Home",href:"index.html#home"},
  {id:"about",label:"About",href:"about.html"},
  {id:"links",label:"Links",href:"links.html"},
  {id:"contact",label:"Contact",href:"contact.html"},
@@ -10,19 +10,21 @@ document.body.insertAdjacentHTML("afterbegin",'<div id="bgfix" aria-hidden="true
 const page=document.body.dataset.page||"home";
 document.body.insertAdjacentHTML("afterbegin",`
 <div class="taskbar"><div class="wrap">
- <a class="tb-start" href="index.html"><img src="assets/img/logo.png" alt="${SITE.name}"></a>
+ <a class="tb-start" href="index.html#home"><img src="assets/img/logo.png" alt="${SITE.name}"></a>
  <nav class="tb-nav">${NAV.map(n=>`<a href="${n.href}" class="${n.id===page?"on":""}">${n.label}</a>`).join("")}</nav>
  <div class="tb-clock"><span>♪</span><span id="tb-time">--:--</span></div>
 </div></div>`);
-document.body.insertAdjacentHTML("beforeend",`<footer class="foot"><div class="wrap"><div class="lace bows"></div>Lily Archives ⋆𝜗𝜚 — ${SITE.footer}<p class="foot-credits">fonts : SickCapital · Apostrophic Labs · Maelle.k<br>images : unknown authors</p></div></footer>`);
+document.body.insertAdjacentHTML("beforeend",`<footer class="foot"><div class="wrap"><div class="lace bows"></div>Lily Archives ⋆𝜗𝜚 — ${SITE.footer}<p class="foot-credits">fonts : SickCapital · Apostrophic Labs · Maelle.k<br>images : unknown authors<br>website by ChicGraphics888</p></div></footer>`);
 function tick(){const e=document.getElementById("tb-time");if(e)e.textContent=new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})}
 tick();setInterval(tick,15000);
-/* window × buttons close the window */
-document.addEventListener("click",e=>{const x=e.target.closest(".win-tb .btns b");if(!x||x.textContent.trim()!=="×")return;
- const w=x.closest(".win");w.style.transition="opacity .25s, transform .25s";w.style.opacity=0;w.style.transform="scale(.94)";setTimeout(()=>{w.style.display="none"},250)});
+/* window buttons (onclick) */
+function winAct(el,act){var w=el.closest('.win');if(!w)return;
+ if(act==='min'){w.classList.toggle('collapsed')}
+ else if(act==='max'){w.classList.toggle('maxed')}
+ else if(act==='close'){w.style.transition='opacity .25s, transform .25s';w.style.opacity=0;w.style.transform='scale(.94)';setTimeout(function(){w.style.display='none'},250)}}
 /* animated rain over the forest wallpaper: far + near drops, ground splashes */
 (function(){
- if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches||!matchMedia("(pointer:fine)").matches)return;
  const c=document.createElement("canvas");c.id="rain";c.setAttribute("aria-hidden","true");document.body.prepend(c);
  const x=c.getContext("2d"),dpr=Math.min(devicePixelRatio||1,2);
  let W,H,far=[],near=[],rings=[],run=true,last=performance.now(),dt=1;
@@ -52,8 +54,8 @@ document.addEventListener("click",e=>{const x=e.target.closest(".win-tb .btns b"
 })();
 /* moths: tiny trail behind the pointer (mouse) + a few fly off on every click / tap (works on mobile) */
 (function(){
- if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
- const fine=matchMedia("(pointer:fine)").matches;let alive=0;
+ if(matchMedia("(prefers-reduced-motion:reduce)").matches||!matchMedia("(pointer:fine)").matches)return;
+ const fine=true;let alive=0;
  const st=document.createElement("style");
  st.textContent=".moth{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;will-change:transform,opacity}.moth img{display:block;width:100%;height:auto;transform-origin:50% 40%}";
  document.head.appendChild(st);

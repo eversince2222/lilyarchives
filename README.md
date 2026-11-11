@@ -11,7 +11,8 @@ Site officiel de Lily Archives, artiste ambient / électronique basée à Strasb
 
 ## Fichiers
 
-- `style.css` — styles de base (fenêtres, typographies, mise en page)
+- `style.css` — styles de base (fenêtres, typographies, mise en page), chargé sur toutes les pages
+- `index.html` s'appuie sur `style.css`, `landing.css`, `layout.js` et `landing.js` (aucun script ni style en ligne), chargé sur toutes les pages
 - `landing.css` — styles de l'accueil, du bronze, des rubans, des cadres végétaux et de la pluie
 - `layout.js` — barre de navigation, pied de page, pluie animée, papillons au clic
 - `landing.js` — landing interactif (boîte, cartes, fond animé)
