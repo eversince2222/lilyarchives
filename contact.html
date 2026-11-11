@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2F222F">
+<meta name="google-site-verification" content="ewjrCwQLDjomHFw0j_uxamKned8eelVHsRNkTUZbSxQ">
+<title>Contact — Lily Archives</title>
+<meta name="description" content="Contact Lily Archives: send a message, a link or a file.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="landing.css">
+<link rel="canonical" href="https://lilyarchives.xyz/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact — Lily Archives">
+<meta property="og:description" content="Contact Lily Archives: send a message, a link or a file.">
+<meta property="og:url" content="https://lilyarchives.xyz/contact.html">
+<meta name="twitter:card" content="summary">
+</head>
+<body data-page="contact">
+<main class="wrap">
+
+  <div class="lace floral" style="margin:0 auto 34px;max-width:560px"></div>
+  <div class="win solo"><img class="corner tr" src="assets/img/plant_corner.webp" alt="" aria-hidden="true"><img class="corner bl" src="assets/img/plant_corner.webp" alt="" aria-hidden="true">
+    <div class="win-tb"><span class="ic"></span>compose<span class="btns"><b>–</b><b>×</b></span></div>
+    <div class="win-bd" style="padding:24px">
+      <div class="sent" id="sent">message sent, thank you</div>
+      <div class="sent err" id="err" style="display:none">something went wrong — write me directly at eversince2222@gmail.com</div>
+      <form class="form" id="form" action="https://formspree.io/f/xoedalgv" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_subject" value="new message — lily archives">
+        <div><label for="email">your email</label><input class="field" id="email" name="email" type="email" required placeholder="you@example.com"></div>
+        <div><label for="msg">message</label><textarea class="field" id="msg" name="message" required placeholder="hi! i found your music and…"></textarea></div>
+        <div><label for="up">your file</label><input class="field" id="up" name="upload" type="file"></div>
+        <div style="display:flex;gap:10px;justify-content:flex-end"><button type="reset" class="btn">clear</button><button type="submit" class="btn pink">send</button></div>
+      </form>
+    </div>
+  </div>
+</main>
+<script src="layout.js"></script>
+<script>
+const f=document.getElementById('form'),ok=document.getElementById('sent'),er=document.getElementById('err'),b=f.querySelector('[type=submit]');
+f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;er.style.display='none';
+ try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}});
+  if(!r.ok)throw 0;f.style.display='none';ok.style.display='block'}
+ catch(_){er.style.display='block';b.disabled=false}});
+</script>
+</body></html>

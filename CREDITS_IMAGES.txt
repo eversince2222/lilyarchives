@@ -1,0 +1,25 @@
+CRÉDITS — images et éléments visuels (inventaire à compléter)
+
+Polices
+- SickCapital
+- Apostrophic Labs
+- Maelle.k
+(attribution de chaque police à son auteur : à confirmer par Lisa)
+
+Images d'origine fournies par Lisa (auteur à compléter)
+- fond de forêt (website_wallpaper_green) : auteur ?
+- dentelles et rubans (lace_bow, lace_bows, lace_floral, ribbon, bow) : auteur ?
+- cadre miroir ovale (frame) : auteur ?
+- papier et texture mousse (paper, moss) : auteur ?
+- cadre végétal (plant_frame, plant_frame_h, plant_garland, plant_corner) : Antique_wedding / ___51_ / ___50_ : auteur ?
+- plaque métal à la lune (bronze_tile) : maia_roberts_aesthetic : auteur ?
+- lune (moon_icon) : a124b538... : auteur ?
+- boîte à bijoux (box_lid, box_body) : auteur ?
+- papillon (moth, lg_butterfly) : auteur ?
+- biche (lg_deer) : auteur ?
+- illustrations de tarot (card_magician, card_star, card_sun) : auteur ?
+- verso de carte (card_back) : lune et cadre en dentelle, auteur ?
+- photo about : auteur ?
+- illustrations créées par moi (non attribuables) : icônes parchemin/croissant/enveloppe, titre bronze, halos et rais de lumière du fond.
+
+Ce qui reste à faire : pour chaque élément "auteur ?", nom de l'auteur tel que publié sur Pinterest ou sur le site d'origine.
